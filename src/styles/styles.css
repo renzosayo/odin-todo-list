@@ -1,0 +1,35 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    display: grid;
+    grid-template: .3fr 2fr .1fr / 1fr 5fr;
+    height: 100vh;
+}
+
+.header,
+.footer {
+    display: flex;
+    align-items: center;
+    grid-column: 1 / -1;
+    background-color: #003153;
+}
+
+.header {
+}
+
+.header h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 1000;
+    font-size: 50px;
+    margin-left: 24px;
+    color: white;
+    letter-spacing: 2px;
+}
+
+.sidebar {
+    background-color: gainsboro;
+    min-width: 250px;
+}

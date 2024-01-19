@@ -1,5 +1,8 @@
-function createTodo(title, description, dueDate, priority, notes, checklist) {
-    return { title, description, dueDate, priority, notes, checklist };
-}
+
+
+function createTodo(title, description, dueDate, priority, notes) {
+    return { title, description, dueDate, priority, notes };
+};
+
 
 export { createTodo };

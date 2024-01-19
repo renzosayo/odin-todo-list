@@ -1,0 +1,6 @@
+
+class TypeChanger {
+    toArray(obj) {
+
+    }
+}
