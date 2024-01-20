@@ -40,7 +40,7 @@ function setListeners() {
 function setPageContent() {
     importer.domHandler.loadProjects();
     importer.domHandler.loadTodos();
-    StorageManager.removeTodo({title: "123"}, 'Today');
+    StorageManager.removeProject('asdasd');
 }
 
 

@@ -23,8 +23,11 @@ class StorageManager {
         }
     }
 
-    static removeProject() {
+    static removeProject(project) {
         //logic for removing project
+        const storedContent = JSON.parse(this.retrieve());
+        delete storedContent[project];
+        this.save(JSON.stringify(storedContent));
     }
 }
 
