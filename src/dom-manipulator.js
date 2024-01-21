@@ -67,6 +67,8 @@ class DOMManipulator {
 
     loadProjects() {
         const projectsList = this.getProjectsList();
+        const addTodo = document.querySelector('#add-todo');
+        addTodo.classList.remove('hide');
 
         //clear before loading
         this.projectsDiv.innerHTML = "";

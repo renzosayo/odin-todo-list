@@ -1,7 +1,7 @@
 import { ProjectManager } from "./project-manager";
 import { DOMManipulator } from "./dom-manipulator";
 import { StorageManager } from "./storage-manager";
-import { showTodoForm, addProject, addTodo } from "./event-listeners";
+import { showTodoForm, addProject, addTodo, viewProjects } from "./event-listeners";
 
 const importer = new class {
     constructor() {
@@ -29,12 +29,14 @@ function setListeners() {
     const btnAddProject = document.querySelector('.add-project');
     const btnAddTodo = document.querySelector('.add-todo');
     const btnSubmitTodo = document.querySelector('.submit-todo');
+    const btnViewProjects = document.querySelector('.view-projects');
 
     btnAddProject.addEventListener('click', addProject);
     btnAddTodo.addEventListener('click', () => {
         showTodoForm('create')
     });
     btnSubmitTodo.addEventListener('click', addTodo);
+    btnViewProjects.addEventListener('click', viewProjects);
 
 }
 

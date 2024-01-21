@@ -1,6 +1,7 @@
 import { importer } from "./initialize-page";
 import { createTodo } from "./todo-creator";
 import { StorageManager } from "./storage-manager";
+import { DOMManipulator } from "./dom-manipulator";
 
 function addProject() {
     //add to localStorage AND add to dom
@@ -44,6 +45,17 @@ function showTodoForm(mode, index) {
     todoForm.showModal();
 }
 
+function viewProjects() {
+    //project-name to 'All Projects'
+    new DOMManipulator().setProjectName('All Projects');
+    //todo-list to get child div for all projects
+    const todoDiv = document.querySelector('.todo-list');
+    const addTodo = document.querySelector('.add-todo');
+    addTodo.classList.add('hide');
+    todoDiv.innerHTML = '';
+
+}
+
 
 function addTodo() {
     const newTodo = createTodo(
@@ -61,4 +73,4 @@ function addTodo() {
 
 }
 
-export { addProject, showTodoForm, addTodo };
+export { addProject, showTodoForm, addTodo, viewProjects };
