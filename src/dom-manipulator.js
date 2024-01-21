@@ -68,7 +68,6 @@ class DOMManipulator {
     loadProjects() {
         const projectsList = this.getProjectsList();
         const addTodo = document.querySelector('#add-todo');
-        addTodo.classList.remove('hide');
 
         //clear before loading
         this.projectsDiv.innerHTML = "";
@@ -78,6 +77,7 @@ class DOMManipulator {
             projectButton.addEventListener('click', () => {
                 this.setProjectName(project);
                 this.loadTodos(project);
+                addTodo.classList.remove('hide');
             });
 
             this.addToDom(this.projectsDiv, projectButton);

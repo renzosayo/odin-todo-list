@@ -14,7 +14,6 @@ class StorageManager {
     }
 
     static editTodo(index) {
-        alert('edittodo called' + index);
         const storedContent = JSON.parse(StorageManager.retrieve());
         let projectName = document.querySelector('.project-name').textContent;
         

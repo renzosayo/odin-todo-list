@@ -1,6 +1,7 @@
 * {
     margin: 0px;
     padding: 0px;
+    box-sizing: border-box;
 }
 
 body {
@@ -133,4 +134,18 @@ form button,
 form textarea,
 form select {
     width: 100%;
+}
+
+.project-overview {
+    font-size: 20px;
+    
+}
+
+.project-overview ul {
+    margin-left: 20px;
+}
+
+.project-overview h3 {
+    font-size: 30px;
+    margin: 10px 0px 16px 0px;
 }

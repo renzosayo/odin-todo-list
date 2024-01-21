@@ -46,14 +46,36 @@ function showTodoForm(mode, index) {
 }
 
 function viewProjects() {
-    //project-name to 'All Projects'
-    new DOMManipulator().setProjectName('All Projects');
+
     //todo-list to get child div for all projects
     const todoDiv = document.querySelector('.todo-list');
     const addTodo = document.querySelector('.add-todo');
-    addTodo.classList.add('hide');
-    todoDiv.innerHTML = '';
+    const projectsList = importer.domHandler.getProjectsList();
 
+    importer.domHandler.setProjectName('All Projects');
+    todoDiv.innerHTML = '';
+    addTodo.classList.add('hide');
+
+    for(let project of projectsList) {
+        let todoList = importer.domHandler.getTodoList(project);
+        todoDiv.appendChild(createProjectElement(project, todoList));
+    }
+
+}
+
+function createProjectElement(project, todoList) {
+    const builder = new DOMManipulator();
+    const projectElement = builder.buildElement('div', 'project-overview');
+    const ul = builder.buildElement('ul');
+
+    for(let i = 0; i < todoList.length; i++) {
+        ul.appendChild(builder.buildElement('li', '', todoList[i]['title']));
+    }
+
+    projectElement.appendChild(builder.buildElement('h3', '', project));
+    projectElement.appendChild(ul);
+
+    return projectElement;  
 }
 
 
