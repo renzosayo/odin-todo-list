@@ -1,3 +1,6 @@
+import { createTodo } from "./todo-creator";
+import { DOMManipulator } from "./dom-manipulator";
+
 class StorageManager {
     //only uses 1 localstorage item for entire app
     static STORAGE_ITEM_NAME = "todo-main-item";
@@ -10,7 +13,26 @@ class StorageManager {
         return localStorage.getItem(this.STORAGE_ITEM_NAME);
     }
 
-    static removeTodo(todo, project) {
+    static editTodo(index) {
+        alert('edittodo called' + index);
+        const storedContent = JSON.parse(StorageManager.retrieve());
+        let projectName = document.querySelector('.project-name').textContent;
+        
+        const newTodo = createTodo(
+            document.getElementById('title').value, 
+            document.getElementById('description').value, 
+            document.getElementById('due-date').value, 
+            document.getElementById('priority').value, 
+            document.getElementById('notes').value
+        );
+
+        storedContent[projectName][index] = newTodo;
+        this.save(JSON.stringify(storedContent));
+
+       new DOMManipulator().loadTodos(projectName);
+    }
+
+    static removeTodoFromStorage(todo, project) {
         //logic for removing todo
         const storedContent = JSON.parse(this.retrieve());
         const todoList = storedContent[project];
@@ -23,7 +45,7 @@ class StorageManager {
         }
     }
 
-    static removeProject(project) {
+    static removeProjectFromStorage(project) {
         //logic for removing project
         const storedContent = JSON.parse(this.retrieve());
         delete storedContent[project];

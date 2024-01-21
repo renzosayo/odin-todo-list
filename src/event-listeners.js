@@ -17,10 +17,33 @@ function addProject() {
     
 }
 
-function showTodoForm() {
+function clearForm() {
+    //clear fields
+    document.getElementById('title').value = '';
+    document.getElementById('description').value = '';
+    document.getElementById('due-date').value = '';
+    document.getElementById('priority').value = '';
+    document.getElementById('notes').value = '';   
+}
+
+function showTodoForm(mode, index) {
     const todoForm = document.querySelector("dialog");
+
+    //change what submit does depending on mode
+    const formBtn = document.querySelector('.submit-todo');
+    const newBtn = formBtn.cloneNode(true);
+    //clone to remove all listeners
+    formBtn.parentElement.replaceChild(newBtn, formBtn);
+
+    if(mode === 'create') {
+        clearForm();
+        newBtn.addEventListener('click', addTodo);
+    } else if(mode === 'edit') {
+        newBtn.addEventListener('click', (e) => StorageManager.editTodo(index));
+    }
     todoForm.showModal();
 }
+
 
 function addTodo() {
     const newTodo = createTodo(
@@ -30,9 +53,12 @@ function addTodo() {
         document.getElementById('priority').value, 
         document.getElementById('notes').value
     );
+    let projectName = document.querySelector('.project-name').textContent;
 
     //to add todo to project
-    importer.projectHandler.addToProject('Today', newTodo);
+    importer.projectHandler.addToProject(projectName, newTodo);
+    importer.domHandler.loadTodos(projectName);
+
 }
 
 export { addProject, showTodoForm, addTodo };

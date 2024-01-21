@@ -31,16 +31,20 @@ function setListeners() {
     const btnSubmitTodo = document.querySelector('.submit-todo');
 
     btnAddProject.addEventListener('click', addProject);
-    btnAddTodo.addEventListener('click', showTodoForm);
+    btnAddTodo.addEventListener('click', () => {
+        showTodoForm('create')
+    });
     btnSubmitTodo.addEventListener('click', addTodo);
 
 }
 
 //checks localstorage for content then displays on page
 function setPageContent() {
+    const DEFAULT_PROJECT = 'Today';
+
     importer.domHandler.loadProjects();
-    importer.domHandler.loadTodos();
-    StorageManager.removeProject('asdasd');
+    importer.domHandler.loadTodos(DEFAULT_PROJECT);
+    importer.domHandler.setProjectName(DEFAULT_PROJECT);
 }
 
 
